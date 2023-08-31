@@ -1,44 +1,24 @@
 package school.sptech;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Login extends Usuarios{
-    private String login;
-    private String senha;
+public class Login{
 
-    public void setLogin(String login){
-        this.login = login;
-    }
-    public String getLogin(){
-        return this.login;
-    }
-    public void setSenha(String senha){
-        this.senha = senha;
-    }
-    public String getSenha(){
-        return this.senha;
+    private List<Pessoa> listAllUsers = new ArrayList<>();
+
+    public Login() {
+        this.listAllUsers.add(new Pessoa("adm", "adm", true));
+        this.listAllUsers.add(new Pessoa("teste", "teste", false));
+        this.listAllUsers.add(new Pessoa("marise", "urubu100", true));
     }
 
-    public boolean checkLogin(){
-
-        List<List<String>> usersList = getList();
-
-        boolean isInList = false;
-
-        for(List<String> subList: usersList){
-
-            if(subList.get(0).equals(this.login)
-                    && subList.get(1).equals(this.senha)){
-                isInList = true;
+    public Pessoa checkLogin(String login, String senha){
+        for(Pessoa item:this.listAllUsers){
+            if(item.getLogin().equals(login) && item.getSenha().equals(senha)){
+                return item;
             }
-
         }
-
-        if(isInList){
-            return true;
-        }else{
-            return false;
-        }
-
+        return null;
     }
 }

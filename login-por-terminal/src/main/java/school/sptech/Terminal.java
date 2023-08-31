@@ -1,5 +1,7 @@
 package school.sptech;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -36,19 +38,22 @@ public class Terminal extends Colors {
 
         drawLine();
 
+        logIn(login, senha);
+
+    }
+
+    private void logIn(String login, String senha){
         Login usuario = new Login();
+        Pessoa userData = usuario.checkLogin(login, senha);
 
-        usuario.setLogin(login);
-        usuario.setSenha(senha);
-
-        if(usuario.checkLogin()){
-            this.acessGranted();
+        if(userData != null){
+            this.acessGranted(userData);
         }else{
             this.acessDenied();
         }
     }
 
-    public void drawLogin(){
+    public void init(){
         this.drawHeader();
         this.drawForm();
     }
@@ -56,12 +61,19 @@ public class Terminal extends Colors {
     private void acessDenied(){
         System.out.println(colorize(this.error, "Acesso Negado!"));
         this.clear();
-        this.drawLogin();
+        this.init();
     }
 
-    private void acessGranted(){
+    private void acessGranted(Pessoa data){
+
         System.out.println(colorize(this.sucess, "Acesso Autorizado!"));
         this.clear();
+
+        if(data.isAdmin()){
+            callAdminOptions();
+        }else{
+            callFuncOptions();
+        }
     }
 
 }
