@@ -88,6 +88,7 @@ public class Terminal extends Colors{
             case 1 -> System.out.println("Saindo da Aplicação!");
             case 2 -> callAdminMenu();
         }
+
     }
 
     private void callAdminMenu(){
@@ -103,16 +104,18 @@ public class Terminal extends Colors{
                 [1] - Voltar ao Menu
                 [2] - Cadastrar novo Usuario
                 [3] - Ver lista de Usuários
+                [4] - Deslogar
                 """));
         do {
             System.out.print(colorize(aqua,"Sua opção >>> "));
             option = teclado.nextInt();
-        }while(option < 1 || option > 3);
+        }while(option < 1 || option > 4);
 
         switch (option){
             case 1 -> callAdminOptions();
             case 2 -> insertUserMenu();
-            case 3-> consultUserMenu();
+            case 3 -> consultUserMenu();
+            case 4 -> init();
 
         }
     }
@@ -140,7 +143,7 @@ public class Terminal extends Colors{
 
             System.out.println(colorize(super.sucess, "Usuário Cadastrado!"));
 
-            System.out.print(colorize(super.aqua,"\nGostario de Cadastrar Outro Usuário? [S ou N] >>> "));
+            System.out.print(colorize(super.aqua,"\nGostaria de Cadastrar Outro Usuário? [S ou N] >>> "));
 
             resp = teclado.next();
 
@@ -175,7 +178,7 @@ public class Terminal extends Colors{
                 [3] - Alterar Usuário
                 """));
         do {
-            System.out.print(colorize(aqua,"Sua opção >>> "));
+            System.out.print(colorize(super.aqua,"Sua opção >>> "));
             option = teclado.nextInt();
         }while(option < 1 || option > 3);
 
@@ -237,7 +240,41 @@ public class Terminal extends Colors{
 
     }
     private void callFuncOptions(){
-        System.out.println("Ur r an ordinary employee");
+
+        int option;
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println(colorize(super.primary,"""
+                O que você quer fazer?
+                [1] - Sair
+                [2] - Verificar Informações do Sistema
+                """));
+        do {
+            System.out.print(colorize(super.aqua,"Sua opção >>> "));
+            option = teclado.nextInt();
+        }while(option < 1 || option > 2);
+
+        switch (option) {
+            case 1 -> System.out.println("Saindo da Aplicação!");
+            case 2 -> showSystemInfo();
+        }
+    }
+
+    private void showSystemInfo(){
+
+        int option;
+
+        Scanner teclado = new Scanner(System.in);
+        SystemInfo sys = new SystemInfo();
+
+        System.out.println(sys);
+
+        do {
+            System.out.print(colorize(super.aqua,"Digite [0] para Voltar >>> "));
+            option = teclado.nextInt();
+        }while(option != 0);
+
+        callFuncOptions();
     }
 
 }
