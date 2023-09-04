@@ -1,9 +1,9 @@
 package school.sptech;
 
 public class Pessoa {
-    private final String login;
-    private final String senha;
-    private final boolean admin;
+    private String login;
+    private String senha;
+    private boolean admin;
 
     public Pessoa(String login, String senha, boolean admin) {
         this.login = login;
@@ -21,5 +21,17 @@ public class Pessoa {
 
     public boolean isAdmin() {
         return this.admin;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

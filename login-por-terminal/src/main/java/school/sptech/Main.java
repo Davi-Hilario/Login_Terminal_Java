@@ -7,5 +7,7 @@ public class Main {
 
         app.init();
 
+        System.out.println("\n\n\tFim da execução do programa!");
+
     }
 }

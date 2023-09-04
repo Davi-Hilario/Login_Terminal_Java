@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Login{
 
-    private List<Pessoa> listAllUsers = new ArrayList<>();
+    protected List<Pessoa> listAllUsers = new ArrayList<>();
 
     public Login() {
         this.listAllUsers.add(new Pessoa("adm", "adm", true));
