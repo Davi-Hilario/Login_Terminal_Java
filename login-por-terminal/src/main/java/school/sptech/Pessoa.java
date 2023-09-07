@@ -3,7 +3,7 @@ package school.sptech;
 public class Pessoa {
     private String login;
     private String senha;
-    private boolean admin;
+    private final boolean admin;
 
     public Pessoa(String login, String senha, boolean admin) {
         this.login = login;
@@ -31,7 +31,4 @@ public class Pessoa {
         this.senha = senha;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
 }

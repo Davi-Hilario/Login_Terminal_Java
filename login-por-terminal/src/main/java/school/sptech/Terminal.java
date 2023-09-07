@@ -10,12 +10,12 @@ public class Terminal extends Colors{
         System.out.println("\n\n\n");
     }
     private void drawLine(){
-        System.out.println(colorize(super.aqua, "========================"));
+        System.out.println(setTextAqua("========================"));
     }
 
     private void drawHeader(){
         drawLine();
-        System.out.println(colorize(super.primary, "\tLOGIN NO SISTEMA"));
+        System.out.println(setTextPrimary("\tLOGIN NO SISTEMA"));
         drawLine();
     }
 
@@ -23,10 +23,10 @@ public class Terminal extends Colors{
 
         Scanner teclado = new Scanner(System.in);
 
-        System.out.print(colorize(super.primary, "Login: "));
+        System.out.print(setTextPrimary("Login: "));
         String login = teclado.nextLine();
 
-        System.out.print(colorize(super.primary, "Senha: "));
+        System.out.print(setTextPrimary("Senha: "));
         String senha = teclado.nextLine();
 
         drawLine();
@@ -51,14 +51,14 @@ public class Terminal extends Colors{
     }
 
     private void acessDenied(){
-        System.out.println(colorize(super.error, "Acesso Negado!"));
+        System.out.println(setTextError("Acesso Negado!"));
         this.clear();
         this.init();
     }
 
     private void acessGranted(Pessoa data){
 
-        System.out.println(colorize(super.sucess, "Acesso Autorizado!"));
+        System.out.println(setTextSucess("Acesso Autorizado!"));
         this.clear();
 
         if(data.isAdmin()){
@@ -73,18 +73,17 @@ public class Terminal extends Colors{
         int option;
         Scanner teclado = new Scanner(System.in);
 
-        System.out.println(colorize(super.primary,"""
+        System.out.println(setTextPrimary("""
                 O que você quer fazer?
                 [1] - Sair
                 [2] - Configurar Usuários
                 """));
         do {
-            System.out.print(colorize(super.aqua,"Sua opção >>> "));
+            System.out.print(setTextAqua("Sua opção >>> "));
             option = teclado.nextInt();
         }while(option < 1 || option > 2);
 
         switch (option) {
-
             case 1 -> System.out.println("Saindo da Aplicação!");
             case 2 -> callAdminMenu();
         }
@@ -97,7 +96,7 @@ public class Terminal extends Colors{
 
         Scanner teclado = new Scanner(System.in);
 
-        System.out.println(colorize(primary,"""
+        System.out.println(setTextPrimary("""
                 \n
                 Configurações de Usuários
                 Escolha uma opção:
@@ -107,7 +106,7 @@ public class Terminal extends Colors{
                 [4] - Deslogar
                 """));
         do {
-            System.out.print(colorize(aqua,"Sua opção >>> "));
+            System.out.print(setTextAqua("Sua opção >>> "));
             option = teclado.nextInt();
         }while(option < 1 || option > 4);
 
@@ -141,9 +140,9 @@ public class Terminal extends Colors{
 
             this.login.listAllUsers.add(new Pessoa(login, senha, cargo));
 
-            System.out.println(colorize(super.sucess, "Usuário Cadastrado!"));
+            System.out.println(setTextSucess("Usuário Cadastrado!"));
 
-            System.out.print(colorize(super.aqua,"\nGostaria de Cadastrar Outro Usuário? [S ou N] >>> "));
+            System.out.print(setTextAqua("\nGostaria de Cadastrar Outro Usuário? [S ou N] >>> "));
 
             resp = teclado.next();
 
@@ -160,7 +159,7 @@ public class Terminal extends Colors{
         Scanner teclado = new Scanner(System.in);
 
         for (int i = 0; i < this.login.listAllUsers.size(); i++){
-            System.out.println(colorize(super.warning,String.format(
+            System.out.println(setTextWarning(String.format(
                     """
                     {ID: %d; Nome: %s; Senha: %s; Cargo: %s;}""",
                     i+1,
@@ -169,7 +168,7 @@ public class Terminal extends Colors{
                     this.login.listAllUsers.get(i).isAdmin()?"Admin":"Analista")));
         }
 
-        System.out.println(colorize(primary,"""
+        System.out.println(setTextPrimary("""
                 \n
                 O Que Quer Fazer Agora?
                 Escolha uma opção:
@@ -178,7 +177,7 @@ public class Terminal extends Colors{
                 [3] - Alterar Usuário
                 """));
         do {
-            System.out.print(colorize(super.aqua,"Sua opção >>> "));
+            System.out.print(setTextAqua("Sua opção >>> "));
             option = teclado.nextInt();
         }while(option < 1 || option > 3);
 
@@ -208,7 +207,7 @@ public class Terminal extends Colors{
 
         Pessoa user = this.login.listAllUsers.get(index - 1);
 
-        System.out.println(colorize(super.sucess,
+        System.out.println(setTextSucess(
                 String.format(
                         ("Usuário %s Removido com Sucesso!"), user.getLogin())));
 
@@ -231,7 +230,7 @@ public class Terminal extends Colors{
         System.out.print("Nova Senha >>> ");
         newPassword = teclado.next();
 
-        System.out.println(colorize(super.sucess, "Usuário atualizado com sucesso!"));
+        System.out.println(setTextSucess("Usuário atualizado com sucesso!"));
 
         user.setLogin(newLogin);
         user.setSenha(newPassword);
@@ -244,13 +243,13 @@ public class Terminal extends Colors{
         int option;
         Scanner teclado = new Scanner(System.in);
 
-        System.out.println(colorize(super.primary,"""
+        System.out.println(setTextPrimary("""
                 O que você quer fazer?
                 [1] - Sair
                 [2] - Verificar Informações do Sistema
                 """));
         do {
-            System.out.print(colorize(super.aqua,"Sua opção >>> "));
+            System.out.print(setTextAqua("Sua opção >>> "));
             option = teclado.nextInt();
         }while(option < 1 || option > 2);
 
@@ -270,7 +269,7 @@ public class Terminal extends Colors{
         System.out.println(sys);
 
         do {
-            System.out.print(colorize(super.aqua,"Digite [0] para Voltar >>> "));
+            System.out.print(setTextAqua("Digite [0] para Voltar >>> "));
             option = teclado.nextInt();
         }while(option != 0);
 
